@@ -42,7 +42,8 @@ As everyone knows, there is no free lunch in the world of Wallstreet. So how ris
 * The signals CAN'T be used for short positions, because they aren't precise enough.
 * A rather uniqe role in this equasion plays the ECB, because it can severely impact your investment. Rises in interest rates by the ECB could have negative effects on your portfolio.
 
-### If you want more information, visit Wikipedia de.wikipedia.org/wiki/Gebert-Indikator
+### If you want more information, visit Wikipedia 
+> https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
 > (There is only a german Wikipedia article on this topic, so just use Google Translate.)
 
 # How does this Program work, and how do I use it?
