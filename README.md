@@ -43,12 +43,12 @@ As everyone knows, there is no free lunch in the world of Wallstreet. So how ris
 * A rather uniqe role in this equasion plays the ECB, because it can severely impact your investment. Rises in interest rates by the ECB could have negative effects on your portfolio.
 
 ### If you want more information, visit Wikipedia 
-> https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
+https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
 > (There is only a german Wikipedia article on this topic, so just use Google Translate.)
 
 # How does this Program work, and how do I use it?
 ## Tutorial
-> Before opening any file, visit https://free.currencyconverterapi.com/ , and get yourself an API Key!
+0. Before opening any file, visit https://free.currencyconverterapi.com/ , and get yourself an API Key!
 1. Next up, you paste your key into the `api_key.ini` file.
 2. To successfully start the `gebert_indicator.py` file, check if you have installed: `Beautifulsoup4`, `requests` and `pandas`
-3. Now, just simply run the program, end it will output you the current Score,  you then can use!
+3. Now, just simply run the program, and it will output you the current Score, you then can use!
