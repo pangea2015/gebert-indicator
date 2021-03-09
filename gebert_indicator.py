@@ -104,11 +104,11 @@ get_inflation()
 
 print("Score:", score) # shows the calculated score
 if score <= 1 and score >= 0:
-    print("Signal: Verkaufen!")
+    print("Signal: SELL!")
 elif score == 2:
-    print("Signal: keine Änderung")
+    print("Signal: no change")
 elif score >= 3 and score <= 4:
-    print("Signal: Kaufen!")
+    print("Signal: BUY!")
 else:
     raise ValueError('"Score" out of range')
 
