@@ -45,9 +45,13 @@ As everyone knows, there is no free lunch in the world of Wallstreet. So how ris
 * The signals CAN'T be used for short positions, because they aren't precise enough.
 * A rather uniqe role in this equasion plays the ECB, because it can severely impact your investment. Rises in interest rates by the ECB could have negative effects on your portfolio.
 
-### If you want more information, visit Wikipedia 
-https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
+#### Further Informations: 
+>https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
 > (There is only a german Wikipedia article on this topic, so just use Google Translate.)
+
+> Sometimes, https://free.currencyconverterapi.com/ has server downtimes which will result an error message.
+
+>THIS IS NO FINANCIAL ADVISE! 
 
 # How does this Program work, and how do I use it?
 ## Tutorial
@@ -56,7 +60,9 @@ https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
 2. To successfully start the `gebert_indicator.py` file, check if you have installed: `Beautifulsoup4`, `requests` and `pandas`
 3. Now, just simply run `gebert_indicator.py`, and it will output you the current score, you then can use!
 
-#### Further notes
-> Sometimes, https://free.currencyconverterapi.com/ has server downtimes which will result an error message.
+## Using "argprarse"
+[![help.png](https://i.postimg.cc/c4PRPkXJ/help.png)](https://postimg.cc/qzX63wff)
 
->THIS IS NO FINANCIAL ADVISE! 
+> On the picture above, you can see the screen, that will appear, if you dont open the file directly, but instead use `-h` or `--help` after the file name in your CMD.
+
+> just open CMD in your installation directory, and type: `gebert_indicator.py -h`

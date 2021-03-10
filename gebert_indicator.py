@@ -40,10 +40,12 @@ def is_month_right(): # Checks if the current month is between November and Apri
         score += 1
     else:
         raise ValueError('cannot calculate current month')
-    return score
+    return monthnow
 
 def dollar_euro(): # Checks if the Dollar has gone up in price in relation to the Euro in the last year.
     global score
+    global usdeur_today_value
+    global usdeur_y_value
     try:
         usdeur_today_value = json.dumps(usdeur_today.json()["USD_EUR"], indent=1)
         usdeur_y_value = json.dumps(usdeur_y.json()["USD_EUR"], indent=1)
@@ -78,9 +80,10 @@ def get_interest(): # Checks if the latest change in interest rates by the EZB w
     return score
 
 def get_inflation(): # checks if the inflation rate is lower than last year
-    data = []
     global score
     global inflation_data
+    global data
+    data = []
     sitetext = BeautifulSoup(inflation_data.text, "html.parser")
     table = sitetext.find("table", {"id" : ""})
 
@@ -97,6 +100,16 @@ def get_inflation(): # checks if the inflation rate is lower than last year
         raise ValueError('Unable to calculate Inflation')
     return score
 
+def calculate_signal():
+    global score
+    if score <= 1 and score >= 0:
+        return "sell"
+    elif score == 2:
+        return "same"
+    elif score >= 3 and score <= 4:
+        return "buy"
+    else:
+        raise ValueError('"Score" out of range')
 
 # score calculation
 is_month_right()
@@ -105,21 +118,39 @@ get_interest()
 get_inflation()
 
 # arpgarse
-parser = argparse.ArgumentParser(description="calculate the current score.")
-parser.add_argument("-s", "--score", help="output the current score", action="store_true")
+parser = argparse.ArgumentParser(description="access all built-in calculations seperatly")
+parser.add_argument("-s", "--score", help="current score", action="store_true")
+parser.add_argument("-sig", "--signal", help="the corresponding signal (like buy, sell)", action="store_true")
+parser.add_argument("-m", "--month", help="current month", action="store_true")
+#parser.add_argument("-intr", "--interest", help="Eurozone interest rate", action="store_true") | WILL ADD LATER
+parser.add_argument("-dexday", "--dextoday", help="Dollar / Euro exchange rate TODAY", action="store_true")
+parser.add_argument("-dexyear", "--dexyear", help="Dollar / Euro exchange rate LAST YEAR", action="store_true")
+parser.add_argument("-infday", "--infday", help="Inflation rate TODAY", action="store_true")
+parser.add_argument("-infyear", "--infyear", help="Inflation rate LAST YEAR", action="store_true")
 args = parser.parse_args()
+
 if args.score:
     print(score)
-    quit()
+if args.signal:
+    print(calculate_signal())
+if args.month:
+    print(is_month_right())
+if args.dextoday:
+    dollar_euro()
+    print(usdeur_today_value)
+if args.dexyear:
+    dollar_euro()
+    print(usdeur_y_value)
+if args.infday:
+    get_inflation()
+    print(data[1][1])
+if args.infyear:
+    get_inflation()
+    print(data[13][1])
+
 
 # score output
-print("Score:", score) # shows the calculated score
-if score <= 1 and score >= 0:
-    print("Signal: SELL!")
-elif score == 2:
-    print("Signal: no change")
-elif score >= 3 and score <= 4:
-    print("Signal: BUY!")
-else:
-    raise ValueError('"Score" out of range')
-os.system("pause")
+if not any(vars(args).values()):
+    print("Score:", score) # shows the calculated score
+    print("Signal: " + calculate_signal() + "\n")
+    os.system("pause")
