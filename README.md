@@ -1,6 +1,6 @@
 # Gebert Indicator
 ### What is the Gebert Indicator?
-The Gebert stock market Indicator was invented by the german physicist Thomas Gebert in the 1990s, and can help you invest in german stock indecies, just as the DAX. Using the Gebert Indicator would have granted you a significantly higher return on Investment, whilst reducing the risk of loss. 
+The Gebert stock market Indicator was invented by the german physicist Thomas Gebert in the 1990s, and can help you invest in german stock indecies, just as the DAX. Using the Gebert Indicator would have granted you a significantly higher return on Investment. 
 
 ### How did it perform?
 
@@ -10,11 +10,11 @@ The Gebert stock market Indicator was invented by the german physicist Thomas Ge
 ![Periods](https://upload.wikimedia.org/wikipedia/commons/6/61/DAX-Chart_von_1988_bis_2018_mit_Gebert-Investitionsphasen.jpg)
 >Chart of the periods in which you would have been invested in the market (green).
 
-As you propably can see, just by using this Strategy, you would have gained over 3000% return on your investment, whilst drastically reducing the Volatility, and therefore your risk. The DAX, the index we invested in, made "only" 750% in the same period of time.
+As you propably can see, just by using this Strategy, you would have gained over 3000% return on your investment. The DAX, the index we invested in, made "only" 750% in the same period of time.
 
 ### How does it work?
-As amazing the return, and the low Volatility is, as simple is it to do. The Gebert Indicator works with a 4-Point score system of so called "sub-indicators".
-You can simply buy an DAX ETF with low costs, to maximise your profit.
+As amazing the return is, as simple it is to do. The Gebert Indicator works with a 4-Point score system of so called "sub-indicators".
+You can simply buy an DAX ETF at low costs, to maximise your profit.
 > Due to this being on a monthly basis, you need to recalculate EVERY month!
 
 * Eurozone Interest rates
@@ -30,14 +30,17 @@ Now, lets see what to do at which score:
 
 Score | Signal
 ----- | ------
-0 - 1 | Sell all your current positions
-2 | Same signal as last month
-3 - 4 | Buy back in
+0 | strong Sell 
+1 | Sell
+2 | no change
+3 | Buy
+4 | strong Buy
+
 
 ### Risks
 As everyone knows, there is no free lunch in the world of Wallstreet. So how risky is this investment?
 
-* The most important: It only works for the GERMAN stock market, because of its unice economic position.
+* The most important: It only works for the GERMAN stock market.
 * The Gebert Indicator requires great discipline, because of the famous "Fear of Missing out", that can arise.
 * The signals CAN'T be used for short positions, because they aren't precise enough.
 * A rather uniqe role in this equasion plays the ECB, because it can severely impact your investment. Rises in interest rates by the ECB could have negative effects on your portfolio.
@@ -51,4 +54,9 @@ https://de.wikipedia.org/w/index.php?title=Gebert-Indikator&oldid=208773021
 0. Before opening any file, visit https://free.currencyconverterapi.com/ , and get yourself an API Key!
 1. Next up, you paste your key into the `api_key.ini` file.
 2. To successfully start the `gebert_indicator.py` file, check if you have installed: `Beautifulsoup4`, `requests` and `pandas`
-3. Now, just simply run the program, and it will output you the current Score, you then can use!
+3. Now, just simply run `gebert_indicator.py`, and it will output you the current score, you then can use!
+
+#### Further notes
+> Sometimes, https://free.currencyconverterapi.com/ has server downtimes which will result an error message.
+
+>THIS IS NO FINANCIAL ADVISE! 

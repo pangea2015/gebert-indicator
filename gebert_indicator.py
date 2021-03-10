@@ -13,6 +13,7 @@ import datetime
 import os
 import json
 import pandas as pd
+import argparse
 
 # vars
 score = 0
@@ -25,13 +26,9 @@ try:
 except:
     raise RuntimeError("Unable to access http://www.leitzinsen.info/")
 
-with open("api_key.ini") as key:
-    for line in key:
-        try:
-            usdeur_today = requests.get("https://free.currconv.com/api/v7/convert?q=USD_EUR&compact=ultra&apiKey=" + str(line))
-            usdeur_y = requests.get("http://free.currconv.com/api/v7/convert?apiKey=" + str(line) + "&q=USD_EUR&compact=ultra&date=" + str(last_year))
-        except:
-            raise RuntimeError("Unable to access API")
+f = open("api_key.ini", "r")
+usdeur_today = requests.get(f"https://free.currconv.com/api/v7/convert?q=USD_EUR&compact=ultra&apiKey={f.read()}")
+usdeur_y = requests.get(f"http://free.currconv.com/api/v7/convert?apiKey={f.read()}&q=USD_EUR&compact=ultra&date={last_year}")
 
 # Functions
 def is_month_right(): # Checks if the current month is between November and April.
@@ -47,8 +44,12 @@ def is_month_right(): # Checks if the current month is between November and Apri
 
 def dollar_euro(): # Checks if the Dollar has gone up in price in relation to the Euro in the last year.
     global score
-    usdeur_today_value = json.dumps(usdeur_today.json()["USD_EUR"], indent=1)
-    usdeur_y_value = json.dumps(usdeur_y.json()["USD_EUR"], indent=1)
+    try:
+        usdeur_today_value = json.dumps(usdeur_today.json()["USD_EUR"], indent=1)
+        usdeur_y_value = json.dumps(usdeur_y.json()["USD_EUR"], indent=1)
+    except:
+        raise RuntimeError("\n\n\n\n\nUnable to connect to https://free.currencyconverterapi.com/. Please try again later!")
+    
     if usdeur_today_value > usdeur_y_value:
         score += 1
     elif usdeur_today_value < usdeur_y_value:
@@ -96,12 +97,22 @@ def get_inflation(): # checks if the inflation rate is lower than last year
         raise ValueError('Unable to calculate Inflation')
     return score
 
-# Code
+
+# score calculation
 is_month_right()
 dollar_euro()
 get_interest()
 get_inflation()
 
+# arpgarse
+parser = argparse.ArgumentParser(description="calculate the current score.")
+parser.add_argument("-s", "--score", help="output the current score", action="store_true")
+args = parser.parse_args()
+if args.score:
+    print(score)
+    quit()
+
+# score output
 print("Score:", score) # shows the calculated score
 if score <= 1 and score >= 0:
     print("Signal: SELL!")
@@ -111,6 +122,4 @@ elif score >= 3 and score <= 4:
     print("Signal: BUY!")
 else:
     raise ValueError('"Score" out of range')
-
-print("\n\n\n")
 os.system("pause")
