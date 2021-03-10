@@ -63,6 +63,7 @@ As everyone knows, there is no free lunch in the world of Wallstreet. So how ris
 ## Using "argprarse"
 [![help.png](https://i.postimg.cc/c4PRPkXJ/help.png)](https://postimg.cc/qzX63wff)
 
-> On the picture above, you can see the screen, that will appear, if you dont open the file directly, but instead use `-h` or `--help` after the file name in your CMD.
+> On the picture above, you can see the screen, that will appear, if you dont open the file directly.
+> Instead use `-h` or `--help` after the file name in your CMD.
 
 > just open CMD in your installation directory, and type: `gebert_indicator.py -h`
