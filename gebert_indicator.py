@@ -152,7 +152,8 @@ if args.infyear:
 
 
 # score output
-if not any(vars(args).values()):
-    print(f"Score: {score}") # shows the calculated score
-    print(f"Signal: {calculate_signal()}\n") # shows corresponding signal
-    os.system("pause")
+if __name__ == "__main__":
+    if not any(vars(args).values()):
+        print(f"Score: {score}") # shows the calculated score
+        print(f"Signal: {calculate_signal()}\n") # shows corresponding signal
+        os.system("pause")
