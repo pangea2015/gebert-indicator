@@ -3,39 +3,36 @@ created by pangea2015 on GitHub
 
 READ README.md BEFOR USING THE PROGRAM
 ENTER YOUR API KEY FROM https://free.currencyconverterapi.com/ INTO api_key.ini FILE
-MAKE SURE TO INSTALL ALL PACKAGES LISTED UNTER #Import BELOW
 """
 
 # Import
 from bs4 import BeautifulSoup
-import requests
-import datetime
-import os
+from requests import get
+from datetime import datetime, date, timedelta
 import json
-import pandas as pd
-import argparse
+from argparse import ArgumentParser
 
 # vars
 score = 0
-last_year = datetime.date.today() - datetime.timedelta(days=365) # calculates date last year
+last_year = date.today() - timedelta(days=365) # calculates date last year
 
 # Data
 try:
-    inflation_data = requests.get("http://www.leitzinsen.info/inflation.htm")
-    interest_data = requests.get("http://www.leitzinsen.info/eurozone.htm") 
+    inflation_data = get("http://www.leitzinsen.info/inflation.htm")
+    interest_data = get("http://www.leitzinsen.info/eurozone.htm") 
 except:
     raise RuntimeError("Unable to access http://www.leitzinsen.info/")
 
 with open("api_key.ini", "r") as f:
     for line in f:
-        usdeur_today = requests.get(f"https://free.currconv.com/api/v7/convert?q=USD_EUR&compact=ultra&apiKey={str(line)}")
-        usdeur_y = requests.get(f"http://free.currconv.com/api/v7/convert?apiKey={str(line)}&q=USD_EUR&compact=ultra&date={str(last_year)}")
+        usdeur_today = get(f"https://free.currconv.com/api/v7/convert?q=USD_EUR&compact=ultra&apiKey={str(line)}")
+        usdeur_y = get(f"http://free.currconv.com/api/v7/convert?apiKey={str(line)}&q=USD_EUR&compact=ultra&date={str(last_year)}")
         break
 
 # Functions
 def is_month_right(): # Checks if the current month is between November and April.
     global score
-    monthnow = int(datetime.datetime.now().strftime("%m"))
+    monthnow = int(datetime.now().strftime("%m"))
     if monthnow <= 4 and monthnow > 0:
         score += 1
     elif monthnow >= 11 and monthnow <= 12:
@@ -120,7 +117,7 @@ get_interest()
 get_inflation()
 
 # arpgarse
-parser = argparse.ArgumentParser(description="access all built-in calculations seperatly")
+parser = ArgumentParser(description="access all built-in calculations seperatly")
 parser.add_argument("-s", "--score", help="current score", action="store_true")
 parser.add_argument("-sig", "--signal", help="the corresponding signal (like buy, sell)", action="store_true")
 parser.add_argument("-m", "--month", help="current month", action="store_true")
@@ -156,4 +153,3 @@ if __name__ == "__main__":
     if not any(vars(args).values()):
         print(f"Score: {score}") # shows the calculated score
         print(f"Signal: {calculate_signal()}\n") # shows corresponding signal
-        os.system("pause")
