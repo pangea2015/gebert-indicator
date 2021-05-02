@@ -37,8 +37,6 @@ def is_month_right(): # Checks if the current month is between November and Apri
         score += 1
     elif monthnow >= 11 and monthnow <= 12:
         score += 1
-    else:
-        raise ValueError('cannot calculate current month')
     return monthnow
 
 def dollar_euro(): # Checks if the Dollar has gone up in price in relation to the Euro in the last year.
